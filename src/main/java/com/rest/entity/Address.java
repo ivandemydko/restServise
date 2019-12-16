@@ -1,6 +1,8 @@
 package com.rest.entity;
 
+import org.springframework.stereotype.Component;
 
+@Component
 public class Address {
 
     private Long id;
@@ -10,7 +12,8 @@ public class Address {
     private String room;
 
 
-    public Address(String city, String street, String building, String room) {
+    public Address(Long id,String city, String street, String building, String room) {
+        this.id = id;
         this.city = city;
         this.street = street;
         this.building = building;
