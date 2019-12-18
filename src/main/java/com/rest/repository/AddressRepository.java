@@ -1,6 +1,7 @@
 package com.rest.repository;
 
 import com.rest.entity.Address;
+import com.rest.errors.AddressNotExistException;
 import org.springframework.stereotype.Repository;
 
 
@@ -29,6 +30,11 @@ public class AddressRepository {
     }
 
     public Address updateAddress(Address address) {
+        boolean ifExist = addressList.entrySet()
+                .stream()
+                .anyMatch(x -> x.getKey().equals(address.getId()));
+        if (!ifExist)
+            throw new AddressNotExistException("Such address does not exist");
         return addressList.put(address.getId(), address);
     }
 
